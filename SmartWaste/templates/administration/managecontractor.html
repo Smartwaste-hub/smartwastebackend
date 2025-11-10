@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANAGE CONTRACTOR</title>
+<style>
+    form{
+        margin-top: 100px;
+        margin-left: 250px;
+    }
+   table{
+        height: 200px;
+        width: 200px;
+    }
+    button {
+        margin-left: 10px;
+    }
+    h1 {
+        margin-left: 50px;
+    }
+</style>
+</head>
+<body>
+    <form>
+    <h1>MANAGE CONTRACTOR</h1>
+    <table border="3px">
+        <thead>
+            <tr>
+              <th>Contractor Name</th>
+              <th>DOB</th>
+              <th>Email</th>
+              <th>Qualification</th>
+              <th>Phone Number</th>
+              <th></th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in val %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td> {{ i.dob}}   </td>
+                <td> {{ i.email }} </td>
+                <td>{{ i.qualification}}    </td>
+                <td> {{ i.mobilenumber }}   </td>
+              
+                <td>
+                   
+                        <a href="AcceptContractor/{{ i.LOGIN.id }}">accept</a>
+                        <a href="RejectContractor/{{i.LOGIN.id}}">Reject</a>
+                    </td>
+                  
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+</body>
+</html>

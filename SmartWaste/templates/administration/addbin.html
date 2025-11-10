@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD BIN</title>
+    <style>
+        form
+        {
+            
+         height: 200px;
+         width: 400px;
+         border-width: 2px;
+         border-style: solid;
+         border-color: rgb(23, 23, 171);
+         margin: auto;
+         border-radius: 30px;
+         text-align: center;
+         background-image: url(https://tse2.mm.bing.net/th/id/OIP.Juv25VPkrbAYqE9berzWXwAAAA?pid=Api&P=0&h=220);
+         margin-top: 150px;
+        }
+         
+
+         
+         button{
+            margin: auto;
+            margin-top: 25px;
+            border-radius: 50px;
+            padding: 6px 20px;
+             
+         }
+         button:hover 
+         {
+        background-color: rgb(54, 148, 189);
+         }
+        label
+        {
+            font-size: larger;
+            margin-left: 50px;
+        }
+        input
+        {
+            border-radius: 50px;
+            margin-top: 20px;
+            /* padding: 8px 20px; */
+
+
+
+        }
+        select{
+            width: 90%;
+            border-radius:50px ;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token%}
+        <table>
+<tr>
+    <td><label>Bin Name  </label></td>
+    <td>:
+        <select name="BinName">
+    <option value="bin1">Bin 1</option>
+    <option value="bin2">Bin 2</option>
+    <option value="bin3"> Bin 3</option>
+</select>
+    </td>
+</tr>
+        
+
+<tr>
+    <td><label>Place  </label></td>
+    <td>:
+<input type="text" name="BinPlace">
+
+    </td>
+<br>
+</tr>
+        </table>
+
+<button>add</button>
+
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERIFY USER</title>
+    <style>
+        form {
+            margin-left: 250px;
+            margin-top: 150px;
+        }
+        table {
+            height: 200px;
+            width: 500px;
+        }
+        h1 {
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>VERIFY USER</h1>
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>Address</th>
+                    <th>Department</th>
+                    <th>Mobile Number</th>
+                    <th>  Gender      </th>
+                </tr>
+            </thead>
+            <tbody>
+             {% for i in val %}
+                <tr>
+                    <td>{{ i.name }} </td>
+                    <td> {{ i.age}}     </td>
+                    <td>  {{ i.address}}   </td>
+                    <td>  {{ i.department}}   </td>
+                    <td> {{ i.mobilenumber }}  </td>
+                    <td>{{ i.gender }}</td>
+                    <td>
+                        <a href="AcceptUser/{{i.LOGIN.id}}">ACCEPT</a>
+                        <br>
+                        <a href="RejectUser/{{i.LOGIN.id}}"> REJECT</a>               
+                    </td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>

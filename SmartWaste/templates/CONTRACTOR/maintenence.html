@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maintenance Status</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #333;
+    }
+
+    table {
+      width: 80%;
+      max-width: 800px;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #39caff;
+      color: white;
+      font-size: 16px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      background-color: #39caff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #1e90ff;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+    }
+
+    form button:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 600px) {
+      table, form {
+        width: 95%;
+      }
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Maintenance Status</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bin Name</th> 
+        <th>Location</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bin 101</td>
+        <td>Main Street</td>
+        <td style="color: red; font-weight: bold;">Full</td>
+        <td>
+          <button>Collected</button>
+          <button>Not Collected</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form>
+    <button type="submit">Update</button>
+  </form>
+
+</body>
+</html>

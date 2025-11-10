@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIEW COMPLAINT AND SEND REPLY</title>
+    <style>
+        form{
+            margin-left: 200px;
+            margin-top: 100px;
+        }
+        table{
+            height: 200px;
+            width: 600px;
+        }
+        input {
+            margin-left: 50px;
+        }
+        button {
+            margin-left: 100px;
+            margin-top: 10px;
+            
+        }
+        button:hover {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>VIEW COMPLAINT AND SEND REPLY</h1> 
+    <table border="2px">
+      <thead>
+        <tr>
+            <th>STUDENT</th>
+            <th>Complaint</th>
+            <th>Date</th>
+            <th>Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in val %}
+         <tr>
+            <td>{{ i.STUDENT.name}} </td>
+            <td>{{ i.Complaint }} </td>
+            <td>{{ i.Date }}    </td>
+            <td>{{ i.Reply }}      </td>
+            <form action="ComplaintReply/{{ i.id }}" method="post">
+                {% csrf_token %}
+            <td>
+                <input type="text" name="reply">  
+                </br>
+                <input type="submit" value="send">
+            </td>
+            </form>
+         </tr>
+         {% endfor %}
+      </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIEW BIN STATUS</title>
+    <style>
+        h1 {
+         
+         margin-left: 400px;
+        }
+        table {
+            margin-left: 400px;
+            border-collapse: collapse;
+            width: 300px;
+            height: 200px;
+        border-color: aliceblue;
+            background-color:#39caff;
+    ;
+        }
+        button {
+            background-color: blanchedalmond;
+            margin-left: 20px;
+        } 
+        button:hover {
+            color: rgb(254, 224, 178);
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <form>
+     <h1>VIEW BIN STATUS</h1>
+     <table border="3px">
+<thead>
+ <tr>  <th> Bin name</th>
+   <th>Bin Place</th>
+   <th>Status</th>
+   <th>      </th>
+ </tr>
+</thead>
+   {% for i in val %}
+<tbody>
+<tr>
+  <td> {{ i.BinName }}    </td>
+  <td> {{ i.BinPlace   }}    </td>
+  <td> 
+    <button>FULL</button>
+    <br>
+    <button>EMPTY</button>
+  </td>
+    
+  <td> {{ i.CollectionStatus }} </td>
+</tr>
+   {% endfor %}
+</tbody>
+
+
+     </table>
+    </form>
+    
+</body>
+</html>
