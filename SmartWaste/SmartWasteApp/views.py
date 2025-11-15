@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from SmartWaste.SmartWasteApp.serializer import ComplaintSerializer, RewardSerializer
 from SmartWasteApp.forms import BinForm
 from SmartWasteApp.models import *
 
@@ -132,3 +135,58 @@ class Binstatus(View):
         # obj=BinTable.objects.all()
         return render(request, "CONTRACTOR/viewbinstatus.html",{'val':bin}) 
     
+
+
+# /////////////////////////////////////////////////
+
+
+class loginPage_api(APIView):
+    def post(self,request):
+        response_dict={}
+
+        #get data from the request
+        username = request.data.get("Username")
+        password = request.data.get("Password")
+
+        #validate input
+        if not username or not password:
+            response_dict["message"]="Failed"
+            return Response(response_dict,status=status.HTTP_400_BAD_REQUEST)
+        
+        #fetch the user from LoginTable
+        t_user = LoginTable.objects.filter(username=username, Password=password).first()
+
+        if not t_user:
+            response_dict["message"]="Failed"
+            return Response(response_dict,status=status.HTTP_401_UNATHORIZED)
+        else:
+            response_dict["message"]="success"
+            response_dict["login_id"]=t_user.id
+            response_dict["UserType"]=t_user.UserType
+
+            return Response(response_dict,status=status.HTTP_200_OK)
+        
+
+
+class ViewRewardAPI(APIView):   
+    def get(self,request):
+        c=RewardTable.object.all()
+        serializer=RewardSerializer(c, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+class SendComplaintAPI(APIView):
+    def post(self,request,id):
+        guardian = LoginTable.objects.get(LOGIN__id=id)
+        serializer=ComplaintSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(guardian=guardian)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, id):
+        guardian = StudentTable.objects.get(guardian__id=id)
+        Complaints=ComplaintTable.objects.filter(guardian=guardian)
+        serializer=ComplaintSerializer(Complaints, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK) 
+    
+
