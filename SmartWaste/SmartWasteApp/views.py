@@ -4,7 +4,7 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from SmartWaste.SmartWasteApp.serializer import ComplaintSerializer, RewardSerializer
+from SmartWasteApp.serializer import *
 from SmartWasteApp.forms import BinForm
 from SmartWasteApp.models import *
 
@@ -137,7 +137,7 @@ class Binstatus(View):
     
 
 
-# /////////////////////////////////////////////////
+# //////////////////////////////API///////////////////
 
 
 class loginPage_api(APIView):
@@ -154,11 +154,11 @@ class loginPage_api(APIView):
             return Response(response_dict,status=status.HTTP_400_BAD_REQUEST)
         
         #fetch the user from LoginTable
-        t_user = LoginTable.objects.filter(username=username, Password=password).first()
+        t_user = LoginTable.objects.filter(Username=username, Password=password).first()
 
         if not t_user:
             response_dict["message"]="Failed"
-            return Response(response_dict,status=status.HTTP_401_UNATHORIZED)
+            return Response(response_dict,status=status.HTTP_401_UNAUTHORIZED)
         else:
             response_dict["message"]="success"
             response_dict["login_id"]=t_user.id
@@ -190,3 +190,22 @@ class SendComplaintAPI(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK) 
     
 
+class StudentRegAPIView(APIView):
+     def post(self,request):
+         print('==================',request.data)
+         reg_serial=StudentSerializer(data=request.data)
+         login_serial=LoginSerializer(data=request.data)
+
+         regvalid=reg_serial.is_valid()
+         loginvalid=login_serial.is_valid()
+
+         if regvalid and loginvalid:
+             login=login_serial.save(UserType='Student')
+             reg_serial.save(LOGIN=login)
+             return Response({'message':'Registration successful'},status=status.HTTP_200_OK)
+         else:
+             return Response({'Registration error': reg_serial.errors if not regvalid else None,
+                              'login error': login_serial.errors if not loginvalid else None}, status=status.HTTP_400_BAD_REQUEST)
+         
+ 
+         

@@ -38,11 +38,19 @@ urlpatterns = [
     path('ViewBins',ViewBins.as_view(), name="ViewBins"),
     path('EditBin/<int:id>', EditBin.as_view(), name="EditBin"),
     path('DeleteBin/<int:id>', DeleteBin.as_view(), name="DeleteBin"),
+    path('Admindashboard',Admindashboard.as_view(),name='Admindashboard'),
     
     #/////////////////////////////CONTRACTOR/////////////////////////////
 
     path('Maintenence', Maintenence.as_view(), name="Maintenence"),
     path('BinStatus', Binstatus.as_view(), name="BinStatus"),
-    path('Admindashboard',Admindashboard.as_view(),name='Admindashboard'),
-    
+
+
+    #//////////////////////////////////////API ////////////////////////////
+
+    path('loginPage_api',  loginPage_api.as_view(), name=" loginPage_api"),
+    path('ViewRewardAPI', ViewRewardAPI.as_view(), name="ViewRewardAPI"),
+    path('SendComplaintAPI',SendComplaintAPI.as_view(), name="SendComplaintAPI"),
+    path('StudentRegAPIView', StudentRegAPIView.as_view(), name=" StudentRegAPIView"),
+
     ]

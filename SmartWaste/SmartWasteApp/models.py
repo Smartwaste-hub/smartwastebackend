@@ -32,6 +32,7 @@ class StudentTable(models.Model):
     department=models.CharField(max_length=250,null=True,blank=True)
     mobilenumber=models.BigIntegerField(null=True,blank=True)
     gender=models.CharField(max_length=250,null=True,blank=True)
+    email=models.CharField(max_length=250,null=True,blank=True)
     LOGIN = models.ForeignKey(LoginTable,on_delete=models.CASCADE,null=True,blank=True)
 
    
