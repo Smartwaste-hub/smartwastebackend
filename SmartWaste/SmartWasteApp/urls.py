@@ -59,7 +59,7 @@ urlpatterns = [
     path('loginPage_api',  loginPage_api.as_view(), name=" loginPage_api"),
     path('ViewRewardAPI', ViewRewardAPI.as_view(), name="ViewRewardAPI"),
     path('SendComplaintAPI/<int:id>',SendComplaintAPI.as_view(), name="SendComplaintAPI"),
-    path('StudentRegAPIView',StudentRegAPIView.as_view(),name="StudentRegAPIView"),
+    # path('StudentRegAPIView',StudentRegAPIView.as_view(),name="StudentRegAPIView"),
     path('viewprofile',viewprofile.as_view(),name="viewprofile"),
     ######################API VIEWS #######################
     path('StudentRegAPIView',StudentRegAPIView.as_view(),name='StudentRegAPIView'),

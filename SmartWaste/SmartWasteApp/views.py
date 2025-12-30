@@ -337,11 +337,54 @@ class ViewProductAPI(APIView):
         c=ProductTable.objects.all()
         d=ProductSerializer(c, many=True)
         return Response(d.data, status=status.HTTP_200_OK)
+    
+class RedeemGiftAPI(APIView):
+    def post(self,request,user_id,gift_id):
+        print('===============',request.data)
+        try:
+            user = UserModel.objects.get(LOGIN_id=user_id) 
+            gift = GiftModel.objects.get(id=gift_id)
 
+            if user.points is None or gift.Points is None or user.points < gift.Points:
+                return Response(
+                    {"message":"Not enough to redeem this gift."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
+            #Deduct points from user
+            user.points-=gift.points
+            user.save()
+
+            gift.Quantity-=1
+            gift.save()
+
+            #Creat claim record
+            ClaimProduct.objects.create(
+              UserName=user,  
+              ProductName=gift,
+              totalRewardSpend=gift.points
+            )
+
+            return Response({
+                "message":"Gift redeemed successfully!",
+                "gift":gift.Giftname,
+                "points_spent":user.points
+            }, status=status.HTTP_200_OK)
+        
+        except UserModel.DoesnNotExist:
+            return Response({"message":"User not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        except UserModel.DoesNotExist:
+            return Response({"message":"Gift not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        except Exception as e:
+            return Response(
+                {"message":f"An error occurred:{str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
   
    
 
       
-             
+        

@@ -12,6 +12,10 @@ class ProductTable(models.Model):
     Image=models.FileField(upload_to='Images',null=True,blank=True)
     Description=models.CharField(max_length=100,null=True,blank=True)
 
+class ClaimProduct(models.Model):
+    UserName=models.ForeignKey(StudentTable,on_delete=models.CASCADE,null=True,blank=True)
+    ProductName=models.ForeignKey(GiftModel, on_delete=models.CASCADE, null=True, blank=True)
+    totalRewardSpend=models.DateField(auto_now_add=True)
 
 class ContractorTable(models.Model):
     name=models.CharField(max_length=50,null=True,blank=True)
@@ -40,6 +44,7 @@ class StudentTable(models.Model):
     mobilenumber=models.BigIntegerField(null=True,blank=True)
     gender=models.CharField(max_length=250,null=True,blank=True)
     email=models.CharField(max_length=250,null=True,blank=True)
+    Point=models.IntegerField
     Qr=models.ImageField(upload_to='qr/',max_length=100,null=True,blank=True)
     LOGIN = models.ForeignKey(LoginTable,on_delete=models.CASCADE,null=True,blank=True)
 
