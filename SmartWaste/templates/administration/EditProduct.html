@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="text" 
+           placeholder="Product Name" 
+           name="ProductName" 
+           value="{{ val.ProductName }}"><br><br>
+
+    <input type="text" 
+           placeholder="Point" 
+           name="Point" 
+           value="{{ val.Point }}"><br><br>
+
+    <!-- Show existing image -->
+    {% if val.Image %}
+        <img src="{{ val.Image.url }}" width="150" height="150"><br><br>
+    {% endif %}
+
+    <input type="file" name="Image"><br><br>
+
+    <textarea placeholder="Description" 
+              name="Description">{{ val.Description }}</textarea><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

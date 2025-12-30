@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add and manage product</title>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <h1>Add And Manage Product</h1><br>
+
+    <input type="text" placeholder="Product Name" name="ProductName"><br><br>
+
+    <input type="text" placeholder="Point" name="Point"><br><br>
+
+    <input type="file" name="Image"><br><br>
+
+    <textarea placeholder="Description" name="Description"></textarea><br><br>
+
+    <button type="submit">SUBMIT</button>
+</form>
+
+</body>
+</html>

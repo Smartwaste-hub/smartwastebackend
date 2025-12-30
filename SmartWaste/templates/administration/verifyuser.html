@@ -42,9 +42,14 @@
                     <td> {{ i.mobilenumber }}  </td>
                     <td>{{ i.gender }}</td>
                     <td>
+                        {% if i.LOGIN.UserType == "Student"%}
+                        <a href="RejectUser/{{i.LOGIN.id}}">REJECT</a>
+                        {% elif i.LOGIN.UserType == "Rejected"%}
                         <a href="AcceptUser/{{i.LOGIN.id}}">ACCEPT</a>
-                        <br>
-                        <a href="RejectUser/{{i.LOGIN.id}}"> REJECT</a>               
+                        {% else %}
+                        <a href="AcceptUser/{{i.LOGIN.id}}">ACCEPT</a>
+                        <a href="RejectUser/{{i.LOGIN.id}}"> REJECT</a>   
+                        {% endif %}
                     </td>
                 </tr>
                {% endfor %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+</head>
+<body>
+    <form>
+        <h1>VIEW PRODUCT</h1>
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Point</th>
+                    <th>Image</th>
+                    <th>Descriptipon</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in val %}
+                <tr>
+                    <td> {{ i.ProductName }}</td>
+                    <td> {{ i.Point }}</td>
+                    {% if i.Image %}
+                    <td><img src="{{ i.Image.url }}" height="100px" width="100px" alt=""></td>
+                    {% else %}
+                    <td>No Image</td>
+                    {% endif %}
+                    <td> {{ i.Description }}</td>
+                    
+                    <td>
+                        <a href="/EditProduct/{{ i.id }}">EDIT</a>
+                        <br>
+                        <a href="/DeleteProduct/{{ i.id }}"> DELETE</a>              
+                    </td>
+                </tr>
+         {% endfor %}
+            </tbody>
+        </table>
+        <a href="/addproduct">ADD</a>
+    
+</body>
+</html>

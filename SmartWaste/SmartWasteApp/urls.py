@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
 from SmartWasteApp.views import *
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', LoginPage.as_view(), name="LoginPage"),
@@ -39,9 +42,14 @@ urlpatterns = [
     path('EditBin/<int:id>', EditBin.as_view(), name="EditBin"),
     path('DeleteBin/<int:id>', DeleteBin.as_view(), name="DeleteBin"),
     path('Admindashboard',Admindashboard.as_view(),name='Admindashboard'),
-    
+    path('addproduct',addproduct.as_view(), name="addproduct"),
+    path('ViewProduct',ViewProduct.as_view(), name="ViewProduct"),
+    path('EditProduct/<int:id>/', EditProduct.as_view(), name="EditProduct"),
+    path('DeleteProduct/<int:id>', DeleteProduct.as_view(), name="DeleteProduct"),
+
     #/////////////////////////////CONTRACTOR/////////////////////////////
 
+    path('contractorhome',contractorhome.as_view(), name="contractorhome"),
     path('Maintenence', Maintenence.as_view(), name="Maintenence"),
     path('BinStatus', Binstatus.as_view(), name="BinStatus"),
 
@@ -50,7 +58,32 @@ urlpatterns = [
 
     path('loginPage_api',  loginPage_api.as_view(), name=" loginPage_api"),
     path('ViewRewardAPI', ViewRewardAPI.as_view(), name="ViewRewardAPI"),
-    path('SendComplaintAPI',SendComplaintAPI.as_view(), name="SendComplaintAPI"),
-    path('StudentRegAPIView', StudentRegAPIView.as_view(), name=" StudentRegAPIView"),
+    path('SendComplaintAPI/<int:id>',SendComplaintAPI.as_view(), name="SendComplaintAPI"),
+    path('StudentRegAPIView',StudentRegAPIView.as_view(),name="StudentRegAPIView"),
+    path('viewprofile',viewprofile.as_view(),name="viewprofile"),
+    ######################API VIEWS #######################
+    path('StudentRegAPIView',StudentRegAPIView.as_view(),name='StudentRegAPIView'),
+    path('products',ViewProductAPI.as_view()),
+
+
+
+
+
 
     ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

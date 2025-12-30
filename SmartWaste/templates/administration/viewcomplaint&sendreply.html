@@ -48,7 +48,7 @@
             <form action="ComplaintReply/{{ i.id }}" method="post">
                 {% csrf_token %}
             <td>
-                <input type="text" name="reply">  
+                <input type="text" name="reply" required>  
                 </br>
                 <input type="submit" value="send">
             </td>

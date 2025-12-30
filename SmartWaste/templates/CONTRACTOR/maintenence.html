@@ -103,14 +103,17 @@
     </thead>
     <tbody>
       <tr>
-        <td>Bin 101</td>
-        <td>Main Street</td>
-        <td style="color: red; font-weight: bold;">Full</td>
+         {% for i in val %}
+
+        <td>{{ i.BinName }}</td>
+        <td>{{ i.BinPlace }}</td>
+        <td>{{ i.BinStatus }}</td>
         <td>
-          <button>Collected</button>
+         <a href="RejectUser/{{i.id}}"> <button>Collected</button></a>
           <button>Not Collected</button>
         </td>
       </tr>
+       {% endfor %}
     </tbody>
   </table>
 

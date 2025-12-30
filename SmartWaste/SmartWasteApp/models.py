@@ -6,6 +6,13 @@ class LoginTable(models.Model):
     Password=models.CharField(max_length=50,null=True,blank=True)
     UserType=models.CharField(max_length=50,null=True,blank=True)
 
+class ProductTable(models.Model):
+    ProductName=models.CharField(max_length=50,null=True,blank=True)
+    Point=models.CharField(max_length=50,null=True,blank=True)
+    Image=models.FileField(upload_to='Images',null=True,blank=True)
+    Description=models.CharField(max_length=100,null=True,blank=True)
+
+
 class ContractorTable(models.Model):
     name=models.CharField(max_length=50,null=True,blank=True)
     address=models.CharField(max_length=100,null=True,blank=True)
@@ -33,6 +40,7 @@ class StudentTable(models.Model):
     mobilenumber=models.BigIntegerField(null=True,blank=True)
     gender=models.CharField(max_length=250,null=True,blank=True)
     email=models.CharField(max_length=250,null=True,blank=True)
+    Qr=models.ImageField(upload_to='qr/',max_length=100,null=True,blank=True)
     LOGIN = models.ForeignKey(LoginTable,on_delete=models.CASCADE,null=True,blank=True)
 
    
@@ -41,10 +49,6 @@ class RewardTable(models.Model):
     BinId=models.ForeignKey(BinTable,on_delete=models.CASCADE,null=True,blank=True)
     RewardPoint=models.FloatField(null=True,blank=True)
     Date =models.DateTimeField(auto_now_add=True,null=True,blank=True) 
-
-
-
-
 
 class ComplaintTable(models.Model):
     STUDENT=models.ForeignKey(StudentTable,on_delete=models.CASCADE,null=True,blank=True)

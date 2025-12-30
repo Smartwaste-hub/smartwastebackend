@@ -9,3 +9,4 @@ admin.site.register(RewardTable)
 
 admin.site.register(ContractorTable)
 admin.site.register(StudentTable)
+admin.site.register(ProductTable)

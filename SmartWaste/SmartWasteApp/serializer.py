@@ -1,16 +1,17 @@
 from rest_framework.serializers import ModelSerializer
 
-from SmartWasteApp.models import BinTable, ComplaintTable, ContractorTable, LoginTable, RewardTable, StudentTable    
+from SmartWasteApp.models import *
 
 class LoginSerializer(ModelSerializer):
     class Meta:
         model=LoginTable
         fields=['Username','Password','UserType']
 
+
 class ContractorSerializer(ModelSerializer):
     class Meta:
         model=ContractorTable
-        fields=['name','address','email','dob','qualification','mobilenumber','gender','LOGIN']
+        fields=['namem','address','email','dob','qualification','mobilenumber','gender','LOGIN']
 
 class BinSerializer(ModelSerializer):
     class Meta:
@@ -20,7 +21,7 @@ class BinSerializer(ModelSerializer):
 class StudentSerializer(ModelSerializer):
     class Meta:
         model=StudentTable
-        fields=['name','age','address','department','mobilenumber','gender','LOGIN']
+        fields=['name','age','address','department','mobilenumber','gender', 'email']
 
 class RewardSerializer(ModelSerializer):
     class Meta:
@@ -31,4 +32,10 @@ class ComplaintSerializer(ModelSerializer):
     class Meta:
         model=ComplaintTable
         fields=['STUDENT','Complaint','Date','Reply']
+
+
+class ProductSerializer(ModelSerializer):
+    class Meta:
+        model=ProductTable
+        fields=['ProductName','Point','Image','Description']
 
